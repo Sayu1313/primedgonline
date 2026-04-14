@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prime Distribution Group LLC | Premier Brand Partner</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #065F46; /* Deep Evergreen */
+            --primary-light: #10B981; 
+            --dark: #0F172A;
+            --gray: #64748B;
+            --bg: #F8FAFC;
+            --white: #FFFFFF;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { color: var(--dark); line-height: 1.7; background-color: var(--white); overflow-x: hidden; }
+
+        /* Scroll Reveal */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* Sticky Header */
+        header {
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .logo { font-size: 1.5rem; font-weight: 800; color: var(--dark); text-decoration: none; letter-spacing: -0.5px; }
+        .logo span { color: var(--primary); }
+        
+        .btn {
+            background: var(--primary); color: var(--white); padding: 0.75rem 1.5rem; 
+            border-radius: 8px; text-decoration: none; font-weight: 600; 
+            transition: background 0.3s ease; border: none; cursor: pointer;
+        }
+        .btn:hover { background: #044E3A; }
+
+        /* Hero Section with Bulletproof Gradient & Image Blend */
+        .hero {
+            position: relative;
+            padding: 13rem 5% 9rem;
+            text-align: center;
+            color: var(--white);
+            /* Premium gradient fallback + Image */
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(6, 95, 70, 0.85) 100%),
+                        url('https://images.unsplash.com/photo-1586528116311-ad8ed7c80951?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
+            background-color: var(--dark);
+        }
+        .hero-content { position: relative; z-index: 2; max-width: 950px; margin: 0 auto; }
+        .hero h1 { font-size: 4rem; font-weight: 800; margin-bottom: 1.5rem; line-height: 1.1; letter-spacing: -1px; }
+        .hero p { font-size: 1.25rem; color: #E2E8F0; margin-bottom: 2.5rem; }
+
+        /* Marquee Ticker */
+        .marquee-wrapper { background: var(--dark); padding: 1rem 0; overflow: hidden; white-space: nowrap; border-bottom: 3px solid var(--primary); }
+        .marquee { display: inline-block; animation: scroll 25s linear infinite; color: var(--primary-light); font-weight: 600; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px;}
+        .marquee span { margin: 0 3rem; }
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* General Sections */
+        .section-padding { padding: 6rem 5%; }
+        .container { max-width: 1200px; margin: 0 auto; text-align: center; }
+        .section-title { font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; color: var(--dark); }
+        .section-subtitle { font-size: 1.15rem; color: var(--gray); max-width: 800px; margin: 0 auto 3rem; }
+
+        /* About Us / Trust Section (NEW) */
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; text-align: left; align-items: center; }
+        .about-text p { margin-bottom: 1.5rem; color: var(--gray); font-size: 1.1rem; }
+        .about-features { background: var(--white); padding: 2.5rem; border-radius: 16px; border: 1px solid #E2E8F0; border-left: 5px solid var(--primary); box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05); }
+        .about-features li { list-style: none; margin-bottom: 1.2rem; display: flex; gap: 0.75rem; align-items: flex-start; color: var(--dark); font-weight: 500; font-size: 1.05rem;}
+        .about-features li:last-child { margin-bottom: 0; }
+        .check-icon { color: var(--primary); font-weight: bold; font-size: 1.2rem; }
+
+        /* Animated Stats */
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; }
+        .stat-item h3 { font-size: 3.5rem; color: var(--primary); font-weight: 800; line-height: 1; }
+        .stat-item p { color: var(--dark); font-weight: 600; margin-top: 0.5rem; font-size: 1.1rem; }
+
+        /* Cards */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .card { background: var(--white); padding: 3rem 2rem; border-radius: 16px; border: 1px solid #E2E8F0; transition: all 0.3s ease; text-align: left; }
+        .card:hover { transform: translateY(-8px); border-color: var(--primary); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05); }
+        .card-icon { width: 50px; height: 50px; background: #ECFDF5; color: var(--primary); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; font-size: 1.5rem; }
+        .card h3 { font-size: 1.35rem; margin-bottom: 1rem; color: var(--dark); }
+        .card p { color: var(--gray); font-size: 1rem; }
+
+        /* FAQ Accordion */
+        .faq-container { max-width: 800px; margin: 0 auto; text-align: left; }
+        details { background: var(--bg); border: 1px solid #E2E8F0; border-radius: 8px; margin-bottom: 1rem; overflow: hidden; }
+        summary { padding: 1.5rem; font-weight: 600; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+        summary::-webkit-details-marker { display: none; }
+        summary::after { content: '+'; color: var(--primary); font-size: 1.5rem; }
+        details[open] summary::after { content: '-'; }
+        .faq-content { padding: 0 1.5rem 1.5rem; color: var(--gray); }
+
+        /* Footer */
+        footer { background: var(--dark); color: #94A3B8; padding: 5rem 5% 2rem; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 4rem; max-width: 1200px; margin: 0 auto 3rem; }
+        .footer-col h4 { color: var(--white); margin-bottom: 1.5rem; font-size: 1.1rem; }
+        .footer-col p, .footer-col a { font-size: 0.95rem; color: #94A3B8; text-decoration: none; display: block; margin-bottom: 0.75rem; }
+        .footer-col a:hover { color: var(--primary-light); }
+        .legal-footer { border-top: 1px solid #1E293B; padding-top: 2rem; text-align: center; font-size: 0.85rem; }
+
+        /* Modal (Pop-up Form) */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(5px);
+            display: flex; justify-content: center; align-items: center;
+            z-index: 2000; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+        }
+        .modal-overlay.active { opacity: 1; pointer-events: auto; }
+        .modal-content {
+            background: var(--white); padding: 3rem; border-radius: 16px;
+            width: 100%; max-width: 500px; position: relative;
+            transform: translateY(20px); transition: transform 0.3s ease; max-height: 90vh; overflow-y: auto;
+        }
+        .modal-overlay.active .modal-content { transform: translateY(0); }
+        .close-modal { position: absolute; top: 1.5rem; right: 1.5rem; font-size: 1.5rem; cursor: pointer; color: var(--gray); border: none; background: transparent; }
+        .form-group { margin-bottom: 1.5rem; text-align: left; }
+        .form-group label { display: block; font-weight: 500; margin-bottom: 0.5rem; color: var(--dark); font-size: 0.9rem; }
+        .form-group input, .form-group textarea { width: 100%; padding: 0.75rem; border: 1px solid #CBD5E1; border-radius: 8px; font-family: inherit; }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1); }
+        .submit-btn { width: 100%; text-align: center; font-size: 1.1rem; padding: 1rem; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .section-padding { padding: 4rem 5%; }
+            .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo">Prime<span>Distribution</span></a>
+        <button class="btn open-modal-btn">Partner With Us</button>
+    </header>
+
+    <section class="hero reveal">
+        <div class="hero-content">
+            <h1>Strategic Partnership for Brand Growth</h1>
+            <p>Your trusted infrastructure partner for North American digital retail, MAP compliance, and omnichannel logistics. Let's scale your brand together.</p>
+            <button class="btn open-modal-btn" style="font-size: 1.1rem; padding: 1rem 2.5rem;">Become a Brand Partner</button>
+        </div>
+    </section>
+
+    <div class="marquee-wrapper">
+        <div class="marquee">
+            <span>• Authorized Retail Partner</span><span>• Brand Protection</span><span>• Strict MAP Compliance</span><span>• Data-Driven Growth</span><span>• 3PL Fulfillment</span><span>• Premium Pet Care</span><span>• E-Commerce Strategy</span>
+            <span>• Authorized Retail Partner</span><span>• Brand Protection</span><span>• Strict MAP Compliance</span><span>• Data-Driven Growth</span><span>• 3PL Fulfillment</span><span>• Premium Pet Care</span><span>• E-Commerce Strategy</span>
+        </div>
+    </div>
+
+    <section class="section-padding reveal">
+        <div class="container">
+            <h2 class="section-title">Who We Are & What We Do</h2>
+            <p class="section-subtitle">We are more than just a buyer. We are your dedicated digital growth partner.</p>
+            
+            <div class="about-grid">
+                <div class="about-text">
+                    <h3 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.8rem; font-weight: 700;">Elevating Brands in the Digital Era</h3>
+                    <p><strong>Prime Distribution Group LLC</strong> is a specialized e-commerce retailer and brand management agency. We purchase your products upfront via wholesale and take full responsibility for representing your brand professionally across massive digital marketplaces like Shopify, Amazon, and Walmart.</p>
+                    <p>We take the headache out of e-commerce. Our team handles everything from inventory forecasting and advanced 3PL logistics to storefront optimization and advertising. We act as your brand's authorized digital extension, allowing you to focus on what you do best: manufacturing great products.</p>
+                </div>
+                <div class="about-features">
+                    <h4 style="font-size: 1.3rem; margin-bottom: 1.5rem; color: var(--dark);">Why Brands Choose Us:</h4>
+                    <ul>
+                        <li><span class="check-icon">✓</span> <strong>Authorized Retail:</strong> We buy direct, build long-term relationships, and never dropship.</li>
+                        <li><span class="check-icon">✓</span> <strong>MAP Enforcement:</strong> We actively protect your pricing and brand equity from unauthorized sellers.</li>
+                        <li><span class="check-icon">✓</span> <strong>Listing Optimization:</strong> We enhance product SEO, photography, and brand content.</li>
+                        <li><span class="check-icon">✓</span> <strong>Reliable Logistics:</strong> We utilize top-tier commercial fulfillment centers to prevent stockouts.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding bg-light reveal" style="background: var(--bg);">
+        <div class="container">
+            <div class="stats-grid" id="stats">
+                <div class="stat-item">
+                    <h3 class="counter" data-target="99">0</h3>
+                    <p>% MAP Compliance</p>
+                </div>
+                <div class="stat-item">
+                    <h3 class="counter" data-target="100">0</h3>
+                    <p>% Secure 3PL Hub</p>
+                </div>
+                <div class="stat-item">
+                    <h3 class="counter" data-target="24">0</h3>
+                    <p>Hr Order Processing</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding reveal">
+        <div class="container">
+            <h2 class="section-title">Value Chain & Infrastructure</h2>
+            <p class="section-subtitle">We don't just move boxes. We optimize distribution across the modern digital landscape.</p>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-icon">🏢</div>
+                    <h3>Commercial Logistics</h3>
+                    <p>Operating through our trusted Burbank, CA logistics partner, we provide secure receiving, climate-controlled storage, and fast omnichannel fulfillment.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🛡️</div>
+                    <h3>Brand Integrity</h3>
+                    <p>We are strictly committed to your policies. We protect your brand identity against price degradation and ensure professional representation.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">📈</div>
+                    <h3>Market Expansion</h3>
+                    <p>We seamlessly integrate with targeted e-commerce platforms, utilizing data-driven PPC campaigns to maximize your product visibility.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding reveal" style="background: var(--bg);">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-container" style="margin-top: 3rem;">
+                <details>
+                    <summary>What product categories do you focus on?</summary>
+                    <div class="faq-content">We specialize in Premium Pet Care (via our dedicated storefront Evergreen Supply Co.), Home & Kitchen, and Consumer Goods.</div>
+                </details>
+                <details>
+                    <summary>Are you a dropshipper or a wholesale buyer?</summary>
+                    <div class="faq-content">We are a traditional wholesale buyer and authorized retailer. We purchase inventory upfront, store it in our commercial 3PL facility, and handle all direct-to-consumer fulfillment.</div>
+                </details>
+                <details>
+                    <summary>How do you ensure MAP compliance?</summary>
+                    <div class="faq-content">We utilize automated tracking software and strict internal policies. We never engage in price wars and deeply respect the pricing guidelines set by the manufacturer.</div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4 style="color: var(--primary-light)">Prime Distribution Group LLC</h4>
+                <p>Connecting premium brands with the modern marketplace through strategic distribution.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Partner 3PL Facility</h4>
+                <p>3073 N California St</p>
+                <p>Burbank, CA 91504</p>
+                <p style="font-size: 0.8rem; margin-top: 0.5rem; color: #64748B;">*Receiving & fulfillment managed via our trusted 3PL partner.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Contact Info</h4>
+                <p>T: 469-269-7022</p>
+                <p>E: ns@primedgonline.com</p>
+            </div>
+            <div class="footer-col">
+                <h4>Policies</h4>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Partnership Agreement</a>
+            </div>
+        </div>
+        <div class="legal-footer">
+            <p>&copy; 2024 Prime Distribution Group LLC. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div class="modal-overlay" id="contactModal">
+        <div class="modal-content">
+            <button class="close-modal" id="closeModal">&times;</button>
+            <h2 style="margin-bottom: 0.5rem; color: var(--dark);">Partner Inquiry</h2>
+            <p style="color: var(--gray); margin-bottom: 2rem; font-size: 0.95rem;">Fill out the form below to initiate a retail partnership.</p>
+            <form onsubmit="event.preventDefault(); alert('Application submitted successfully! Our team will contact you shortly.'); document.getElementById('contactModal').classList.remove('active');">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" required placeholder="John Doe">
+                </div>
+                <div class="form-group">
+                    <label>Company / Brand Name</label>
+                    <input type="text" required placeholder="Acme Corp">
+                </div>
+                <div class="form-group">
+                    <label>Business Email</label>
+                    <input type="email" required placeholder="sales@brand.com">
+                </div>
+                <div class="form-group">
+                    <label>Message / Inquiry</label>
+                    <textarea rows="3" required placeholder="Tell us about your products..."></textarea>
+                </div>
+                <button type="submit" class="btn submit-btn">Submit Inquiry</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
+        }, observerOptions);
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        const modal = document.getElementById('contactModal');
+        document.querySelectorAll('.open-modal-btn').forEach(btn => btn.addEventListener('click', () => modal.classList.add('active')));
+        document.getElementById('closeModal').addEventListener('click', () => modal.classList.remove('active'));
+        modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('active'); });
+
+        const counters = document.querySelectorAll('.counter');
+        let hasCounted = false;
+        const countUp = () => {
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target'), speed = 100;
+                const updateCount = () => {
+                    const current = +counter.innerText, inc = target / speed;
+                    if (current < target) { counter.innerText = Math.ceil(current + inc); setTimeout(updateCount, 15); } 
+                    else { counter.innerText = target; }
+                }; updateCount();
+            });
+        };
+        new IntersectionObserver((entries) => {
+            if(entries[0].isIntersecting && !hasCounted) { countUp(); hasCounted = true; }
+        }).observe(document.getElementById('stats'));
+    </script>
+</body>
+</html>
